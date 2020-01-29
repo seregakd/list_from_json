@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -19,6 +22,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List data;
+
+  Future<String> getDataFromJson() async {
+    String dataJson = await rootBundle.loadString('assets/data.json');
+    print(dataJson);
+    final jsonResult = json.decode(dataJson);
+
+    return dataJson;
+  }
+
+  @override
+  void initState(){
+    getDataFromJson();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +48,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildList() {
+    return Text("test");
+  }
+/*
+  Widget _buildList() {
     return new ListView.builder(
 //        padding: const EdgeInsets.all(16.0),
 //        itemCount: models.length,
@@ -40,4 +61,6 @@ class _HomePageState extends State<HomePage> {
  //       }
     );
   }
+*/
+
 }
