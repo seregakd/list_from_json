@@ -26,9 +26,9 @@ class _HomePageState extends State<HomePage> {
 
   Future<String> getDataFromJson() async {
     String dataJson = await rootBundle.loadString('assets/data.json');
-    print(dataJson);
-    final jsonResult = json.decode(dataJson);
-
+//    print(dataJson);
+    data = json.decode(dataJson);
+    print(data[1]["title"]);
     return dataJson;
   }
 
@@ -48,19 +48,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildList() {
-    return Text("test");
-  }
-/*
-  Widget _buildList() {
     return new ListView.builder(
 //        padding: const EdgeInsets.all(16.0),
-//        itemCount: models.length,
-//        itemBuilder: (BuildContext context, int index){
- //         return ItemList(itemModel: models[i], listItemNumber: i,
- //             parentCount: refreshCount, parentCb: refreshCheckbox);
- //       }
+      itemCount: data == null ? 0 : data.length,
+      itemBuilder: (BuildContext context, int index){
+        return new Card(
+           child: new Text(data[index]["title"]),
+        );
+      }
     );
   }
-*/
+
 
 }
