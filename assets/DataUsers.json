@@ -1,7 +1,7 @@
 [
   {
     "user": "user",
-    "password": "user",
+    "password": "user"
   },
   {
     "user": "1",
@@ -9,7 +9,7 @@
   },
   {
     "user": "@.com",
-    "password": "2",
+    "password": "2"
   },
   {
     "user": "@.net",
