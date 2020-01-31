@@ -1,0 +1,18 @@
+[
+  {
+    "user": "user",
+    "password": "user",
+  },
+  {
+    "user": "1",
+    "password": "1"
+  },
+  {
+    "user": "@.com",
+    "password": "2",
+  },
+  {
+    "user": "@.net",
+    "password": "3"
+  }
+]

@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   List data;
 
   Future<String> getDataFromJson() async {
-    String dataJson = await rootBundle.loadString('assets/data.json');
+    String dataJson = await rootBundle.loadString('assets/DataItems.json');
 
     setState(() {
       data = json.decode(dataJson);
