@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'dart:async';
 import 'dart:convert';
 
 class GetData extends StatefulWidget {
@@ -14,27 +13,24 @@ class _GetDataState extends State<GetData> {
 //  Map <String, String> mapItems;
 //  Map <String, String> mapUsers;
 
-  Future<List> getDataItemsFromJson() async {
-//    return json.decode(await rootBundle.loadString('assets/DataItems.json'));
+  void getDataItemsFromJson() async {
 //    setState(() {
-    String dataJson = await rootBundle.loadString('assets/DataItems.json');
-    print ("dataItems" + dataJson);
+//    String dataJson = await rootBundle.loadString('assets/DataItems.json');
+//    print ("dataItems" + dataJson);
 
     dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
-    print ("dataItems" + dataItems.toString());
+//    print ("dataItems" + dataItems.toString());
 //    });
     waitData();
-    return dataItems;
   }
 
-  Future<List> getDataUsersFromJson() async {
+  void getDataUsersFromJson() async {
 //    return json.decode(await rootBundle.loadString('assets/DataUsers.json'));
 //    setState(() {
     dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
-    print ("dataUsers" + dataUsers.toString());
+//    print ("dataUsers" + dataUsers.toString());
 //    });
     waitData();
-    return dataUsers;
   }
 
   void waitData() {
@@ -42,9 +38,9 @@ class _GetDataState extends State<GetData> {
       //     setState(() {});
       print ("dataItems" + dataItems.toString());
       print ("dataUsers" + dataUsers.toString());
-//      Navigator.pushReplacementNamed(context, '/login',
-//          arguments: <String, List> {'dataItems': dataItems}
-//      );
+      Navigator.pushReplacementNamed(context, '/login',
+          arguments: <String, List> {'dataItems': dataItems}
+      );
 //dataItems, dataUsers
     }
   }
