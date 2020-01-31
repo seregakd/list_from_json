@@ -3,6 +3,9 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
 import 'dart:convert';
 
+import 'ui/LoginPage.dart';
+import 'ui/ViewList.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,17 +14,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'List from JSON',
-      home: HomePage(),
+      home: GetData(),
+      routes: {
+        '/getData':(context) => GetData(),
+        '/login':(context) => LoginPage(dataItems: null,),
+        '/list':(context) => ViewList(),
+      },
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class GetData extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _GetDataState createState() => _GetDataState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _GetDataState extends State<GetData> {
   List data;
 
   Future<String> getDataFromJson() async {
