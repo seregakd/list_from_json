@@ -8,28 +8,44 @@ class GetData extends StatefulWidget {
 }
 
 class _GetDataState extends State<GetData> {
-  List dataItems;
-  List dataUsers;
-//  Map <String, String> mapItems;
-//  Map <String, String> mapUsers;
-//  refactor to stateless wigets
+  Map <String, String> itemsMap = Map<String, String>();
+  Map <String, String> usersMap = Map<String, String>();
 
   void getDataItemsFromJson() async {
-    dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
+    List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
+    parceDataItems(dataItems);
     waitData();
   }
 
   void getDataUsersFromJson() async {
-    dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
+    List dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
+    parceDataUsers(dataUsers);
     waitData();
   }
 
+  void parceDataItems(List dataItems) {
+    for (dynamic item in dataItems) {
+      itemsMap[item["title"]] = item["body"];
+//      print ("title=" + item["title"] + " body=" + item["body"]);
+//      print("itemsMap=" + itemsMap[item["title"]]);
+    }
+  }
+
+  void parceDataUsers(List dataUsers) {
+    for (dynamic item in dataUsers) {
+      usersMap[item["user"]] = item["password"];
+//      print ("user=" + item["user"] + " password=" + item["password"]);
+    }
+  }
+
   void waitData() {
-    if (dataItems != null && dataUsers != null) {
-      print ("dataItems" + dataItems.toString());
-      print ("dataUsers" + dataUsers.toString());
+
+    if (itemsMap != null && usersMap != null) {
+//      print ("itemsMap" + itemsMap.toString());
+
+//      print ("usersMap" + usersMap.toString());
       Navigator.pushReplacementNamed(context, '/login',
-          arguments: <String, List> {'dataItems': dataItems}
+//          arguments: <String, List> {'dataItems': dataItems}
       );
 //dataItems, dataUsers
     }
@@ -52,6 +68,8 @@ class _GetDataState extends State<GetData> {
     );
   }
 
+
+//  refactor to stateless wigets
 /*
   Widget _buildList() {
     return new ListView.builder(
