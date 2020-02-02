@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'List from JSON',
-      home: GetData(),
+      initialRoute: '/',
       routes: {
-        '/getData':(context) => GetData(),
-        '/login':(context) => LoginPage(dataItems: null,),
+        '/':(context) => GetData(),
+        '/login':(context) => LoginPage(),
         '/list':(context) => ViewList(),
       },
     );

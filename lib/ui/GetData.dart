@@ -34,7 +34,6 @@ class _GetDataState extends State<GetData> {
   void parceDataUsers(List dataUsers) {
     for (dynamic item in dataUsers) {
       usersMap[item["user"]] = item["password"];
-//      print ("user=" + item["user"] + " password=" + item["password"]);
     }
   }
 
@@ -45,7 +44,8 @@ class _GetDataState extends State<GetData> {
 
 //      print ("usersMap" + usersMap.toString());
       Navigator.pushReplacementNamed(context, '/login',
-//          arguments: <String, List> {'dataItems': dataItems}
+//          arguments: <String, Map> {'itemsMap': itemsMap}
+          arguments: itemsMap,
       );
 //dataItems, dataUsers
     }

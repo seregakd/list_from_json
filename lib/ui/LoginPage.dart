@@ -3,9 +3,11 @@ import '../Services.dart';
 
 class LoginPage extends StatefulWidget {
 
-LoginPage({@required this.dataItems});
-final dataItems;
+//  final Map <String, String> itemsMap;
+//final Map <String, String> usersMap;
 
+//  LoginPage(this.itemsMap, [param1]);
+//  final Map <String, String> usersMap = ModalRoute.of(context).settings.arguments;
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -14,6 +16,9 @@ class _LoginPageState extends State<LoginPage> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  Map <String, String> _itemsMap;
+
+//  _LoginPageState(this._itemsMap);
   
 
   @override
@@ -25,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    _itemsMap = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: _buildBar(context),
       body: Container(
@@ -85,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
       return viewShowDialog(context, 'Password does not match');
     }
 */
+    print ("map=" + _itemsMap.toString());
     Navigator.pushReplacementNamed(context, '/list');
   }
 }
