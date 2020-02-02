@@ -1,7 +1,5 @@
 class UserDataModel {
-  bool valueCheckbox;
-  String itemText;
-  int counter;
+  String user, password;
 
-  UserDataModel({this.valueCheckbox, this.itemText, this.counter});
+  UserDataModel({this.user, this.password});
 }
