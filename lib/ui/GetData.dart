@@ -15,10 +15,14 @@ class _GetDataState extends State<GetData> {
 
   void getDataItemsFromJson() async {
     List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
-    String js = await rootBundle.loadString('assets/DataItems.json');
+//    List dataItems = json.decode(await rootBundle.loadString('assets/data.json'));
+
+//    String js = await rootBundle.loadString('assets/DataItems.json');
+    String js = await rootBundle.loadString('assets/data.json');
+
     print("js" + js);
     print("dataItems=" + dataItems.toString());
-    parceDataItems(dataItems);
+//   parceDataItems(dataItems);
 //    itemsMap = json.decode(await rootBundle.loadString('assets/DataItems.json'));
     waitData();
   }
