@@ -2,32 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 
+import 'package:list_from_json/model/DataFromJson.dart';
+
 class GetData extends StatefulWidget {
   @override
   _GetDataState createState() => _GetDataState();
 }
 
 class _GetDataState extends State<GetData> {
-  Map <String, String> itemsMap = Map<String, String>();
-  Map <String, String> usersMap = Map<String, String>();
+  Map <String, String> itemsMap = Map <String, String>();
+  Map <String, String> usersMap = Map <String, String>();
 
   void getDataItemsFromJson() async {
     List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
+    String js = await rootBundle.loadString('assets/DataItems.json');
+    print("js" + js);
+    print("dataItems=" + dataItems.toString());
     parceDataItems(dataItems);
+//    itemsMap = json.decode(await rootBundle.loadString('assets/DataItems.json'));
     waitData();
   }
 
   void getDataUsersFromJson() async {
     List dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
     parceDataUsers(dataUsers);
+//    String dataUsers = await rootBundle.loadString('assets/DataUsers.json');
+//    usersMap = json.decode(dataUsers);
     waitData();
   }
 
   void parceDataItems(List dataItems) {
+//    print("dataItems=" + dataItems.toString());
     for (dynamic item in dataItems) {
       itemsMap[item["title"]] = item["body"];
-//      print ("title=" + item["title"] + " body=" + item["body"]);
-//      print("itemsMap=" + itemsMap[item["title"]]);
     }
   }
 
@@ -40,14 +47,9 @@ class _GetDataState extends State<GetData> {
   void waitData() {
 
     if (itemsMap != null && usersMap != null) {
-//      print ("itemsMap" + itemsMap.toString());
-
-//      print ("usersMap" + usersMap.toString());
       Navigator.pushReplacementNamed(context, '/login',
-//          arguments: <String, Map> {'itemsMap': itemsMap}
-          arguments: itemsMap,
+          arguments: DataFromJson(itemsMap, usersMap),
       );
-//dataItems, dataUsers
     }
   }
 

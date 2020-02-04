@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../Services.dart';
 
+import 'package:list_from_json/model/DataFromJson.dart';
+
 class LoginPage extends StatefulWidget {
 
-//  final Map <String, String> itemsMap;
+//final Map <String, String> itemsMap;
 //final Map <String, String> usersMap;
 
 //  LoginPage(this.itemsMap, [param1]);
@@ -16,10 +18,8 @@ class _LoginPageState extends State<LoginPage> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  Map <String, String> _itemsMap;
 
-//  _LoginPageState(this._itemsMap);
-  
+  DataFromJson dataFromJson;
 
   @override
   void dispose() {
@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    _itemsMap = ModalRoute.of(context).settings.arguments;
+    dataFromJson = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: _buildBar(context),
       body: Container(
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
       return viewShowDialog(context, 'Password does not match');
     }
 */
-    print ("map=" + _itemsMap.toString());
+    print ("map=" + dataFromJson.itemsMap.toString());
     Navigator.pushReplacementNamed(context, '/list');
   }
 }
