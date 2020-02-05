@@ -15,38 +15,25 @@ class _GetDataState extends State<GetData> {
 
   void getDataItemsFromJson() async {
     List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
+
     itemsMap = Map.fromIterable(dataItems,
         key: (item) => item["title"],
         value: (item) => item["body"]);
-/*
-    for (dynamic str in dataItems) {
-      print(str.toString());
-    }
-*/
-//    parceDataItems(dataItems);
+
     waitData();
   }
 
   void getDataUsersFromJson() async {
     List dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
-    parceDataUsers(dataUsers);
+
+    usersMap = Map.fromIterable(dataUsers,
+        key: (item) => item["user"],
+        value: (item) => item["password"]);
+
     waitData();
   }
 
-  void parceDataItems(List dataItems) {
-    for (dynamic item in dataItems) {
-      itemsMap[item["title"]] = item["body"];
-    }
-  }
-
-  void parceDataUsers(List dataUsers) {
-    for (dynamic item in dataUsers) {
-      usersMap[item["user"]] = item["password"];
-    }
-  }
-
   void waitData() {
-
     if (itemsMap != null && usersMap != null) {
       Navigator.pushReplacementNamed(context, '/login',
           arguments: DataFromJson(itemsMap, usersMap),
