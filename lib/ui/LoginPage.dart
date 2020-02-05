@@ -5,11 +5,6 @@ import 'package:list_from_json/model/DataFromJson.dart';
 
 class LoginPage extends StatefulWidget {
 
-//final Map <String, String> itemsMap;
-//final Map <String, String> usersMap;
-
-//  LoginPage(this.itemsMap, [param1]);
-//  final Map <String, String> usersMap = ModalRoute.of(context).settings.arguments;
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -82,16 +77,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _loginPressed () {
-/*
-    if (!users.containsKey(_emailController.text)) {
+    if (!dataFromJson.usersMap.containsKey(_emailController.text)) {
       return viewShowDialog(context, 'Username not exists');
     }
 
-    if (users[_emailController.text] != _passwordController.text) {
+    if (dataFromJson.usersMap[_emailController.text] != _passwordController.text) {
       return viewShowDialog(context, 'Password does not match');
     }
-*/
-    print ("map=" + dataFromJson.itemsMap.toString());
-    Navigator.pushReplacementNamed(context, '/list');
+
+    Navigator.pushReplacementNamed(context, '/list',
+      arguments: dataFromJson);
   }
 }

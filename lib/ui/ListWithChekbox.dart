@@ -4,6 +4,10 @@ import '../model/ItemModel.dart';
 import '../Services.dart';
 
 class ListWithChekbox extends StatefulWidget {
+  Map<String, String> itemsMap;
+
+  ListWithChekbox(this.itemsMap);
+
   @override
   _ListWithChekboxState createState() => _ListWithChekboxState();
 }
