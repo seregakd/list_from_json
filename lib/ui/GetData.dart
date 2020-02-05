@@ -15,28 +15,25 @@ class _GetDataState extends State<GetData> {
 
   void getDataItemsFromJson() async {
     List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
-//    List dataItems = json.decode(await rootBundle.loadString('assets/data.json'));
-
-//    String js = await rootBundle.loadString('assets/DataItems.json');
-    String js = await rootBundle.loadString('assets/data.json');
-
-    print("js" + js);
-    print("dataItems=" + dataItems.toString());
-//   parceDataItems(dataItems);
-//    itemsMap = json.decode(await rootBundle.loadString('assets/DataItems.json'));
+    itemsMap = Map.fromIterable(dataItems,
+        key: (item) => item["title"],
+        value: (item) => item["body"]);
+/*
+    for (dynamic str in dataItems) {
+      print(str.toString());
+    }
+*/
+//    parceDataItems(dataItems);
     waitData();
   }
 
   void getDataUsersFromJson() async {
     List dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
     parceDataUsers(dataUsers);
-//    String dataUsers = await rootBundle.loadString('assets/DataUsers.json');
-//    usersMap = json.decode(dataUsers);
     waitData();
   }
 
   void parceDataItems(List dataItems) {
-//    print("dataItems=" + dataItems.toString());
     for (dynamic item in dataItems) {
       itemsMap[item["title"]] = item["body"];
     }
@@ -65,8 +62,6 @@ class _GetDataState extends State<GetData> {
 
   @override
   Widget build(BuildContext context) {
-//    return ProgressDialog();
-
     return Scaffold(
       appBar: AppBar(
           title: Text("Wait loading data..."),
