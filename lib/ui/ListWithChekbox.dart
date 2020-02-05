@@ -9,7 +9,7 @@ class ListWithChekbox extends StatefulWidget {
   ListWithChekbox(this.itemsMap);
 
   @override
-  _ListWithChekboxState createState() => _ListWithChekboxState();
+  _ListWithChekboxState createState() => _ListWithChekboxState(itemsMap);
 }
 
 class _ListWithChekboxState extends State<ListWithChekbox> {
@@ -18,6 +18,9 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   bool _valueTitleCb = false;
   List models = <ItemModel>[];
   ItemModel itemModel;
+  Map<String, String> itemsMap;
+
+  _ListWithChekboxState(this.itemsMap);
 
   void _addItem() {
     setState(() {
