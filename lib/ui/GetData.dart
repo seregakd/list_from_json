@@ -43,6 +43,7 @@ class _GetDataState extends State<GetData> {
 
   @override
   void initState(){
+    super.initState();
     getDataItemsFromJson();
     getDataUsersFromJson();
   }
