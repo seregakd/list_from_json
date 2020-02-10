@@ -4,7 +4,7 @@ import '../model/ItemModel.dart';
 import '../Services.dart';
 
 class ListWithChekbox extends StatefulWidget {
-  Map<String, String> itemsMap;
+  final Map<String, String> itemsMap;
 
   ListWithChekbox(this.itemsMap);
 
@@ -13,21 +13,41 @@ class ListWithChekbox extends StatefulWidget {
 }
 
 class _ListWithChekboxState extends State<ListWithChekbox> {
-  int _nameCounter = 0;
+//  int _nameCounter = 0;
   int _allCount = 0;
   bool _valueTitleCb = false;
   List models = <ItemModel>[];
   ItemModel itemModel;
-  Map<String, String> itemsMap;
+  Map<String, String> _itemsMap;
 
-  _ListWithChekboxState(this.itemsMap);
+  _ListWithChekboxState(this._itemsMap);
 
+/*
   void _addItem() {
     setState(() {
       models.add(ItemModel(valueCheckbox: _valueTitleCb,
         itemText: "Item " + (_nameCounter++).toString(), counter: 0));
     });
   }
+*/
+
+  @override
+  void initState(){
+    super.initState();
+    _addItems();
+  }
+
+  void _addItems() {
+    _itemsMap.forEach((k,v) => models.add(ItemModel(valueCheckbox: _valueTitleCb,
+        itemText: k, counter: 0)));
+    /*
+    for(dynamic itemMap in _itemsMap) {
+      models.add(ItemModel(valueCheckbox: _valueTitleCb,
+          itemText: itemMap, counter: 0));
+    }
+     */
+  }
+
 
   void _valueTitleCheckboxChanged(bool value) {
     setState(() {
@@ -109,12 +129,13 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
       ),
 
       body: _buildList(),
-
+/*
       floatingActionButton: FloatingActionButton(
         onPressed: _addItem,
         tooltip: 'Add item in list',
         child: const Icon(Icons.add),
       ),
+*/
     );
   }
 
@@ -134,12 +155,15 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
 
   Widget _buildList() {
     return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemCount: models.length,
-        itemBuilder: (context, i){
-        return ListItem(itemModel: models[i], listItemNumber: i,
-          parentCount: refreshCount, parentCb: refreshCheckbox);
-        }
+      padding: const EdgeInsets.all(16.0),
+      itemCount: models.length,
+      itemBuilder: (context, i){
+        return Card(
+// add title and body to ItemModel.dart, to addItems(), to ListItem.dart
+          child: ListItem(itemModel: models[i], listItemNumber: i,
+          parentCount: refreshCount, parentCb: refreshCheckbox)
+        );
+      }
     );
   }
 }
