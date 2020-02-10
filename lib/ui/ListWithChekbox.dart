@@ -39,7 +39,7 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
 
   void _addItems() {
     _itemsMap.forEach((k,v) => models.add(ItemModel(valueCheckbox: _valueTitleCb,
-        itemText: k, counter: 0)));
+      itemText: k, counter: 0)));
     /*
     for(dynamic itemMap in _itemsMap) {
       models.add(ItemModel(valueCheckbox: _valueTitleCb,

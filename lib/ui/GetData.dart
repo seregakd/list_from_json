@@ -12,6 +12,7 @@ class GetData extends StatefulWidget {
 class _GetDataState extends State<GetData> {
   Map <String, String> itemsMap = Map <String, String>();
   Map <String, String> usersMap = Map <String, String>();
+  bool _delay = true;
 
   void getDataItemsFromJson() async {
     List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
@@ -33,8 +34,14 @@ class _GetDataState extends State<GetData> {
     waitData();
   }
 
+  void delay() async {
+    await Future.delayed(const Duration(seconds: 2));
+    _delay = false;
+    waitData();
+  }
+
   void waitData() {
-    if (itemsMap != null && usersMap != null) {
+    if (itemsMap != null && usersMap != null && _delay == false) {
       Navigator.pushReplacementNamed(context, '/login',
           arguments: DataFromJson(itemsMap, usersMap),
       );
@@ -44,6 +51,7 @@ class _GetDataState extends State<GetData> {
   @override
   void initState(){
     super.initState();
+    delay();
     getDataItemsFromJson();
     getDataUsersFromJson();
   }
@@ -53,6 +61,9 @@ class _GetDataState extends State<GetData> {
     return Scaffold(
       appBar: AppBar(
           title: Text("Wait loading data..."),
+      ),
+      body: Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }
