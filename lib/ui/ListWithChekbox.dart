@@ -13,7 +13,6 @@ class ListWithChekbox extends StatefulWidget {
 }
 
 class _ListWithChekboxState extends State<ListWithChekbox> {
-//  int _nameCounter = 0;
   int _allCount = 0;
   bool _valueTitleCb = false;
   List models = <ItemModel>[];
@@ -21,15 +20,6 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   Map<String, String> _itemsMap;
 
   _ListWithChekboxState(this._itemsMap);
-
-/*
-  void _addItem() {
-    setState(() {
-      models.add(ItemModel(valueCheckbox: _valueTitleCb,
-        itemText: "Item " + (_nameCounter++).toString(), counter: 0));
-    });
-  }
-*/
 
   @override
   void initState(){
@@ -40,12 +30,6 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   void _addItems() {
     _itemsMap.forEach((k,v) => models.add(ItemModel(valueCheckbox: _valueTitleCb,
       itemText: k, counter: 0)));
-    /*
-    for(dynamic itemMap in _itemsMap) {
-      models.add(ItemModel(valueCheckbox: _valueTitleCb,
-          itemText: itemMap, counter: 0));
-    }
-     */
   }
 
 
@@ -129,13 +113,6 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
       ),
 
       body: _buildList(),
-/*
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addItem,
-        tooltip: 'Add item in list',
-        child: const Icon(Icons.add),
-      ),
-*/
     );
   }
 
@@ -156,7 +133,7 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   Widget _buildList() {
     return ListView.builder(
       padding: const EdgeInsets.all(16.0),
-      itemCount: models.length,
+      itemCount: models.length,cacheExtent: 100,
       itemBuilder: (context, i){
         return Card(
 // add title and body to ItemModel.dart, to addItems(), to ListItem.dart
