@@ -26,7 +26,11 @@ class ListItem extends StatelessWidget  {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Checkbox(value: itemModel.valueCheckbox, onChanged: _valueCbChanged),
-        Text(itemModel.itemText),
+        Column(
+          children: [
+            Text(itemModel.itemText),
+            Text(itemModel.itemText),
+        ]),
         _buildCount(),
       ],
     );
