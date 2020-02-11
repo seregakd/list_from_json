@@ -133,7 +133,8 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   Widget _buildList() {
     return ListView.builder(
       padding: const EdgeInsets.all(16.0),
-      itemCount: models.length,cacheExtent: 100,
+      itemCount: models == null ? 0 : models.length,
+      cacheExtent: 100,
       itemBuilder: (context, i){
         return Card(
           child: ListItem(itemModel: models[i], listItemNumber: i,
