@@ -28,8 +28,8 @@ class ListItem extends StatelessWidget  {
         Checkbox(value: itemModel.valueCheckbox, onChanged: _valueCbChanged),
         Column(
           children: [
-            Text(itemModel.itemText),
-            Text(itemModel.itemText),
+            Text(itemModel.title),
+            Text(itemModel.body),
         ]),
         _buildCount(),
       ],

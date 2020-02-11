@@ -29,7 +29,7 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
 
   void _addItems() {
     _itemsMap.forEach((k,v) => models.add(ItemModel(valueCheckbox: _valueTitleCb,
-      itemText: k, counter: 0)));
+      title: k, body: v, counter: 0)));
   }
 
 
@@ -136,7 +136,6 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
       itemCount: models.length,cacheExtent: 100,
       itemBuilder: (context, i){
         return Card(
-// add title and body to ItemModel.dart, to addItems(), to ListItem.dart
           child: ListItem(itemModel: models[i], listItemNumber: i,
           parentCount: refreshCount, parentCb: refreshCheckbox)
         );

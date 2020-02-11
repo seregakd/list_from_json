@@ -1,7 +1,8 @@
 class ItemModel {
   bool valueCheckbox;
-  String itemText;
+  String title;
+  String body;
   int counter;
 
-  ItemModel({this.valueCheckbox, this.itemText, this.counter});
+  ItemModel({this.valueCheckbox, this.title, this.body, this.counter});
 }
