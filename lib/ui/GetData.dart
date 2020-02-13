@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:list_from_json/model/DataFromJson.dart';
@@ -14,8 +15,27 @@ class _GetDataState extends State<GetData> {
   Map <String, String> usersMap = Map <String, String>();
   bool _delay = true;
 
+/*
   void getDataItemsFromJson() async {
     List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
+
+    itemsMap = Map.fromIterable(dataItems,
+        key: (item) => item["title"],
+        value: (item) => item["body"]);
+
+    waitData();
+  }
+*/
+
+  void getDataItemsFromJson() async {
+    var response = await http.get(
+      Uri.encodeFull("https://gist.githubusercontent.com/seregakd/e8936fb85d4e985bc6e46f166afa35c6/raw/48f8597f61be948a2ccc11e1f47766a2a1890499/DataItems.json"),
+    );
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    List dataItems = json.decode(response.body);
+    print ("dataItems=" + dataItems[1]["title"]);
 
     itemsMap = Map.fromIterable(dataItems,
         key: (item) => item["title"],
@@ -67,21 +87,4 @@ class _GetDataState extends State<GetData> {
       ),
     );
   }
-
-
-//  refactor to stateless wigets
-/*
-  Widget _buildList() {
-    return new ListView.builder(
-      itemCount: data == null ? 0 : data.length,
-      cacheExtent: 100,
-      itemBuilder: (BuildContext context, int index){
-        return new Card(
-           child: Text(data[index]["title"]),
-        );
-      }
-    );
-  }
-*/
-
 }
