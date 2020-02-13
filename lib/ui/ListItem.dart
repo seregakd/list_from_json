@@ -24,10 +24,8 @@ class ListItem extends StatelessWidget  {
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Checkbox(value: itemModel.valueCheckbox, onChanged: _valueCbChanged),
-
         Flexible(
           fit: FlexFit.loose,
           child: Column(
@@ -36,20 +34,6 @@ class ListItem extends StatelessWidget  {
                 Text(itemModel.body, textAlign: TextAlign.left),
                ]),
         ),
-
-/*
-        Column(
-          children: [
- //           Text(itemModel.title, textAlign: TextAlign.center),
-            Flexible(
-                child: Text(itemModel.body, textAlign: TextAlign.left),
-            ),
-
-
-
-        ]),
-
- */
         _buildCount(),
       ],
     );
