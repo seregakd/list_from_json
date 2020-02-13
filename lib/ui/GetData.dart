@@ -32,16 +32,18 @@ class _GetDataState extends State<GetData> {
       Uri.encodeFull("https://gist.githubusercontent.com/seregakd/e8936fb85d4e985bc6e46f166afa35c6/raw/48f8597f61be948a2ccc11e1f47766a2a1890499/DataItems.json"),
     );
     print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
 
-    List dataItems = json.decode(response.body);
-    print ("dataItems=" + dataItems[1]["title"]);
+    if (response.statusCode == 200) {
+      List dataItems = json.decode(response.body);
 
-    itemsMap = Map.fromIterable(dataItems,
-        key: (item) => item["title"],
-        value: (item) => item["body"]);
+      itemsMap = Map.fromIterable(dataItems,
+          key: (item) => item["title"],
+          value: (item) => item["body"]);
 
-    waitData();
+      waitData();
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
   }
 
   void getDataUsersFromJson() async {
