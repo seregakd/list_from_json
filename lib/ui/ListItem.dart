@@ -30,7 +30,8 @@ class ListItem extends StatelessWidget  {
           fit: FlexFit.loose,
           child: Column(
               children: [
-                Text(itemModel.title, textAlign: TextAlign.center),
+                Text(itemModel.title, textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
                 Text(itemModel.body, textAlign: TextAlign.left),
                ]),
         ),
