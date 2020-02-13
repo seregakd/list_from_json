@@ -22,15 +22,34 @@ class ListItem extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Checkbox(value: itemModel.valueCheckbox, onChanged: _valueCbChanged),
+
+        Flexible(
+          fit: FlexFit.loose,
+          child: Column(
+              children: [
+                Text(itemModel.title, textAlign: TextAlign.center),
+                Text(itemModel.body, textAlign: TextAlign.left),
+               ]),
+        ),
+
+/*
         Column(
           children: [
-            Text(itemModel.title),
-            Text(itemModel.body),
+ //           Text(itemModel.title, textAlign: TextAlign.center),
+            Flexible(
+                child: Text(itemModel.body, textAlign: TextAlign.left),
+            ),
+
+
+
         ]),
+
+ */
         _buildCount(),
       ],
     );
