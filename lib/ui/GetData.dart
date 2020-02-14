@@ -11,22 +11,19 @@ class GetData extends StatefulWidget {
 }
 
 class _GetDataState extends State<GetData> {
-  Map <String, String> itemsMap = Map <String, String>();
+//  Map <String, String> itemsMap = Map <String, String>();
+  List itemsList = null;
   Map <String, String> usersMap = Map <String, String>();
   bool _delay = true;
 
-/*
-  void getDataItemsFromJson() async {
-    List dataItems = json.decode(await rootBundle.loadString('assets/DataItems.json'));
 
-    itemsMap = Map.fromIterable(dataItems,
-        key: (item) => item["title"],
-        value: (item) => item["body"]);
+  void getDataItemsFromJson() async {
+    itemsList = json.decode(await rootBundle.loadString('assets/DataItems.json'));
 
     waitData();
   }
-*/
 
+/*
   void getDataItemsFromJson() async {
     var response = await http.get(
       Uri.encodeFull("https://gist.githubusercontent.com/seregakd/e8936fb85d4e985bc6e46f166afa35c6/raw/48f8597f61be948a2ccc11e1f47766a2a1890499/DataItems.json"),
@@ -39,13 +36,12 @@ class _GetDataState extends State<GetData> {
       itemsMap = Map.fromIterable(dataItems,
           key: (item) => item["title"],
           value: (item) => item["body"]);
-
-      waitData();
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
+    waitData();
   }
-
+*/
   void getDataUsersFromJson() async {
     List dataUsers = json.decode(await rootBundle.loadString('assets/DataUsers.json'));
 
@@ -63,9 +59,10 @@ class _GetDataState extends State<GetData> {
   }
 
   void waitData() {
-    if (itemsMap != null && usersMap != null && _delay == false) {
+    if (itemsList != null && usersMap != null && _delay == false) {
+
       Navigator.pushReplacementNamed(context, '/login',
-          arguments: DataFromJson(itemsMap, usersMap),
+          arguments: DataFromJson(itemsList, usersMap),
       );
     }
   }

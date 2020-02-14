@@ -1,5 +1,6 @@
 class DataFromJson {
-  Map <String, String> itemsMap, usersMap;
+  List itemsList;
+  Map <String, String> usersMap;
 
-  DataFromJson(this.itemsMap, this.usersMap);
+  DataFromJson(this.itemsList, this.usersMap);
 }

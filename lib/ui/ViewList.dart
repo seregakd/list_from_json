@@ -11,7 +11,7 @@ class ViewList extends StatelessWidget {
       appBar: AppBar(
           title: _buildTitle(context, dataFromJson)
       ),
-      body: ListWithChekbox(dataFromJson.itemsMap),
+      body: ListWithChekbox(dataFromJson.itemsList),
     );
   }
 

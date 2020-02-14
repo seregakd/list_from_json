@@ -4,12 +4,12 @@ import '../model/ItemModel.dart';
 import '../Services.dart';
 
 class ListWithChekbox extends StatefulWidget {
-  final Map<String, String> itemsMap;
+  final List itemsList;
 
-  ListWithChekbox(this.itemsMap);
+  ListWithChekbox(this.itemsList);
 
   @override
-  _ListWithChekboxState createState() => _ListWithChekboxState(itemsMap);
+  _ListWithChekboxState createState() => _ListWithChekboxState(itemsList);
 }
 
 class _ListWithChekboxState extends State<ListWithChekbox> {
@@ -17,9 +17,9 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   bool _valueTitleCb = false;
   List models = <ItemModel>[];
   ItemModel itemModel;
-  Map<String, String> _itemsMap;
+  List _itemsList;
 
-  _ListWithChekboxState(this._itemsMap);
+  _ListWithChekboxState(this._itemsList);
 
   @override
   void initState(){
@@ -28,8 +28,10 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
   }
 
   void _addItems() {
-    _itemsMap.forEach((k,v) => models.add(ItemModel(valueCheckbox: _valueTitleCb,
-      title: k, body: v, counter: 0)));
+    for (dynamic item in _itemsList) {
+      models.add(ItemModel(valueCheckbox: _valueTitleCb,
+               title: item["title"], body: item["body"], counter: 0));
+    }
   }
 
 
