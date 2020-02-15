@@ -11,7 +11,7 @@ class GetData extends StatefulWidget {
 }
 
 class _GetDataState extends State<GetData> {
-  List itemsList = null;
+  List itemsList;
   Map <String, String> usersMap = Map <String, String>();
   bool _delay = true;
 
