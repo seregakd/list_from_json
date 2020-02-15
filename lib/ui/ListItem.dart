@@ -26,15 +26,10 @@ class ListItem extends StatelessWidget  {
         Checkbox(value: itemModel.valueCheckbox, onChanged: _valueCbChanged),
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(itemModel.title, style: TextStyle(fontWeight: FontWeight.bold)),
-              Row(
-                children: [
-                  Flexible(
-                    fit: FlexFit.tight,
-                      child: Text(itemModel.body),
-                  ),
-                ]),
+              Text(itemModel.body),
             ]),
         ),
         _buildCount(),

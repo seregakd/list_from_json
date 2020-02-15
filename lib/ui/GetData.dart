@@ -39,7 +39,7 @@ class _GetDataState extends State<GetData> {
     await Future.delayed(const Duration(seconds: 2));
   }
 
-  void waitData() {
+  void configurationCompletion() {
     Navigator.pushReplacementNamed(context, '/login',
       arguments: DataFromJson(itemsList, usersMap),
     );
@@ -49,8 +49,11 @@ class _GetDataState extends State<GetData> {
   void initState(){
     super.initState();
 
-    Future.wait([getDataItemsFromJson(), getDataUsersFromJson(), delay()])
-        .then( (List result) => waitData());
+    Future.wait([
+      getDataItemsFromJson(),
+      getDataUsersFromJson(),
+      delay(),
+    ]).then( (List result) => configurationCompletion());
   }
 
   @override
