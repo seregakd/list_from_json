@@ -22,7 +22,6 @@ class _GetDataState extends State<GetData> {
 
     if (response.statusCode == 200) {
       itemsList = json.decode(response.body);
-      print("OK - getDataItemsFromJson()");
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
@@ -34,14 +33,10 @@ class _GetDataState extends State<GetData> {
     usersMap = Map.fromIterable(dataUsers,
         key: (item) => item["user"],
         value: (item) => item["password"]);
-
-    print("OK - getDataUsersFromJson()");
   }
 
   Future<void> delay() async {
     await Future.delayed(const Duration(seconds: 2));
-
-    print("OK - delay()");
   }
 
   void waitData() {
@@ -49,7 +44,6 @@ class _GetDataState extends State<GetData> {
       arguments: DataFromJson(itemsList, usersMap),
     );
   }
-
 
   @override
   void initState(){
