@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ListItem.dart';
-import '../model/ListItemModel.dart';
+import '../model/CartItemModel.dart';
 import '../Services.dart';
 
 class ListWithChekbox extends StatefulWidget {
@@ -15,8 +15,8 @@ class ListWithChekbox extends StatefulWidget {
 class _ListWithChekboxState extends State<ListWithChekbox> {
   int _allCount = 0;
   bool _valueTitleCb = false;
-  List models = <ListItemModel>[];
-  ListItemModel itemModel;
+  List models = <CartItemModel>[];
+  CartItemModel itemModel;
   List _itemsList;
 
   _ListWithChekboxState(this._itemsList);
@@ -29,7 +29,7 @@ class _ListWithChekboxState extends State<ListWithChekbox> {
 
   void _addItems() {
     for (dynamic item in _itemsList) {
-      models.add(ListItemModel(valueCheckbox: _valueTitleCb,
+      models.add(CartItemModel(valueCheckbox: _valueTitleCb,
                title: item["title"], body: item["body"], counter: 0));
     }
   }

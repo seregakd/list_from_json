@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import '../model/ListItemModel.dart';
+import '../model/CartItemModel.dart';
 
 class ListItem extends StatelessWidget  {
-  final ListItemModel itemModel;
+  final CartItemModel itemModel;
   final int listItemNumber;
   final Function parentCount;
   final Function parentCb;
